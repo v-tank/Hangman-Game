@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Hangman Game</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+		
+  </head>
+<body>
+	<!-- <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 mx-auto">
+      	<div class="jumbotron">
+      		<center><img src="assets/images/hangman_logo.jpg" height=250></center>
+      	</div>
+      </div>
+    </div>
+  </div> -->
+
+	<div class="container">
+    <div class="row">
+    	<div class="col-lg-6 mx-auto">
+    		<center>
+    			<h2 id="game-label">Press any key to get started!</h2>
+				</center>
+    	</div>
+    </div>
+
+    <div class="row">
+    	<div class="col-lg-6 mx-auto">
+    		<center>
+    			<h3>Wins:</h3>
+					<p id="wins-label">0</p>
+					<h3>Current Word:</h3>
+				</center>
+    	</div>
+    </div>
+		
+		<div class="row">
+    	<div class="col-lg-6 mx-auto">
+    		<br>
+    		<center>
+    			<h3 id="word-space">_ _ _ _ _ _ _ _ </h3>
+				</center>
+    	</div>
+    </div>
+			
+		<div class="row">
+    	<div class="col-lg-6 mx-auto">
+    		<br>
+    		<center>
+    			<h3>Number of Guesses Remaining:</h3>
+    			<p id="guesses-remaining-label">10</p>
+				</center>
+    	</div>
+    </div>
+
+    <div class="row">
+    	<div class="col-lg-6 mx-auto">
+    		<br>
+    		<center>
+    			<h3>Letters Already Guessed:</h3>
+    			<p id="letters-guessed-label">None</p>
+				</center>
+    	</div>
+    </div>
+
+  </div>
+
+	
+	<script>
+		var states = ["Alaska",
+	    "Alabama",
+	    "Arkansas",
+	    "American Samoa",
+	    "Arizona",
+	    "California",
+	    "Colorado",
+	    "Connecticut",
+	    "District of Columbia",
+	    "Delaware",
+	    "Florida",
+	    "Georgia",
+	    "Guam",
+	    "Hawaii",
+	    "Iowa",
+	    "Idaho",
+	    "Illinois",
+	    "Indiana",
+	    "Kansas",
+	    "Kentucky",
+	    "Louisiana",
+	    "Massachusetts",
+	    "Maryland",
+	    "Maine",
+	    "Michigan",
+	    "Minnesota",
+	    "Missouri",
+	    "Mississippi",
+	    "Montana",
+	    "North Carolina",
+	    "North Dakota",
+	    "Nebraska",
+	    "New Hampshire",
+	    "New Jersey",
+	    "New Mexico",
+	    "Nevada",
+	    "New York",
+	    "Ohio",
+	    "Oklahoma",
+	    "Oregon",
+	    "Pennsylvania",
+	    "Puerto Rico",
+	    "Rhode Island",
+	    "South Carolina",
+	    "South Dakota",
+	    "Tennessee",
+	    "Texas",
+	    "Utah",
+	    "Virginia",
+	    "Virgin Islands",
+	    "Vermont",
+	    "Washington",
+	    "Wisconsin",
+	    "West Virginia",
+	    "Wyoming"];
+
+    var word;
+    var wins = 0;
+    var guessesRemaining = 10;
+    var guessedLetters = [];
+    var dashLetters = "";
+
+    // randomly pick a state from the array and turns it into lowercase
+		word = states[Math.floor(Math.random() * states.length)].toLowerCase();
+
+		// call function print blanks equivalent to length of the state name
+		printBlanks(word.length);
+
+    //console.log("Hello from the other side......of the event");
+
+
+    // Next, we give JavaScript a function to execute when onkeyup event fires.
+    document.onkeyup = function(event) {
+
+    	var keyPressed = event.key;
+    	console.log("Here's what I pressed: " + keyPressed);
+	    //document.getElementById("game-label").textContent = "Game has begun!"
+	    //////////////////////////////////////////////////////////////////////////
+
+	    // Checks and only takes valid a-z values
+			if (event.keyCode >= 65 && event.keyCode <= 90){
+				if ((guessedLetters.indexOf(keyPressed) < 0) && (word.indexOf(keyPressed) < 0)) {
+					guessedLetters.push(keyPressed);
+					console.log("Letter is NOT in the word");
+					guessesRemaining--;
+
+					document.getElementById("guesses-remaining-label").textContent = guessesRemaining;
+					document.getElementById("letters-guessed-label").textContent = guessedLetters;
+				}
+				else if (word.indexOf(keyPressed) > 0) {
+					console.log("Letter is in the word!");
+					console.log("Word length is: " + word.length);
+					console.log("Length of dashLetters is: " + dashLetters.length);
+					console.log("Index of the pressed key in the word is: " + word.indexOf(keyPressed));
+					printLetters(keyPressed);
+
+				}
+			}
+
+
+    }
+
+    function printLetters(keyPressed) {
+    	dashLetters[word.indexOf(keyPressed)] = keyPressed;
+    	console.log("Here's the dashLetter: " + dashLetters);
+    }
+
+    function printBlanks(length){
+    	for(var i = 0; i < length; i++) {
+    		if (word[i] == ' '){
+    			dashLetters += "-";
+    		}
+    		else {
+    			dashLetters += "_"; //appends blanks to display on screen
+    		}
+    	}
+    	document.getElementById("word-space").textContent = dashLetters; // displays blanks on HTML
+    }
+
+
+
+	</script>
+
+</body>
+</html>
