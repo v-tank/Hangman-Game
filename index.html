@@ -7,68 +7,88 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Bitter|Courgette" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 		
   </head>
 <body>
-	<!-- <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-6 mx-auto">
-      	<div class="jumbotron">
-      		<center><img src="assets/images/hangman_logo.jpg" height=250></center>
-      	</div>
-      </div>
-    </div>
-  </div> -->
+	<div class="container-fluid custom">
+        <div class="row">
+            <div class="jumbotron jumbotron-fluid customJumbotron">
+              <div class="container">
+                <center><h1 class="display-4">Hangman</h1></center>
+              </div>
+            </div>
+        </div>
 
-	<div class="container">
-    <div class="row">
-    	<div class="col-lg-6 mx-auto">
-    		<center>
-    			<h2 id="game-label">Press any key to get started!</h2>
-				</center>
-    	</div>
-    </div>
+        <div class="row">
+            <!-- Column 1 -->
+            <div class="col-lg-3">
+                
+            </div>
+                
+            <!-- Column 2 -->
+            <div class="col-lg-6">
+                <div class="row">
+                    <h2 id="game-label" class="text-center">Press any key to get started!</h2>
+                </div>
+                
+                <div class="row">
+                    <br><br>
+                </div>
 
-    <div class="row">
-    	<div class="col-lg-6 mx-auto">
-    		<center>
-    			<h3>Wins:</h3>
-					<p id="wins-label">0</p>
-					<h3>Current Word:</h3>
-				</center>
-    	</div>
-    </div>
-		
-		<div class="row">
-    	<div class="col-lg-6 mx-auto">
-    		<br>
-    		<center>
-    			<h3 id="word-space">_ _ _ _ _ _ _ _ </h3>
-				</center>
-    	</div>
-    </div>
-			
-		<div class="row">
-    	<div class="col-lg-6 mx-auto">
-    		<br>
-    		<center>
-    			<h3>Number of Guesses Remaining:</h3>
-    			<p id="guesses-remaining-label">10</p>
-				</center>
-    	</div>
-    </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row customHeight">
+                            <h3>Wins: </h3>
+                        </div>
+                        
+                        <div class="row customHeight">
+                            <h3>Current Word: </h3>
+                        </div>
 
-    <div class="row">
-    	<div class="col-lg-6 mx-auto">
-    		<br>
-    		<center>
-    			<h3>Letters Already Guessed:</h3>
-    			<p id="letters-guessed-label">None</p>
-				</center>
-    	</div>
+                        <div class="row customHeight">
+                            <h3>Number of Guesses Remaining: </h3>
+                        </div>
+
+                        <div class="row customHeight">
+                            <h3>Letters Already Guessed: </h3>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="row customHeight">
+                            <h2 id="wins-label">0</h2>
+                        </div>
+                        
+                        <div class="row customHeight">
+                            <h2 id="word-space">_ _ _ _ _ _ _ _ </h2>
+                        </div>
+
+                        <div class="row customHeight">
+                            <h2 id="guesses-remaining-label">15</h2>
+                        </div>
+
+                        <div class="row customHeight">
+                            <h2 id="letters-guessed-label">None</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="col-lg-3 customContainer">
+                <div class="vertAlign">
+                    <h3>Good to Know:</h3>
+                    <ul>
+                        <li>Words are US State Capitals</li>
+                        <li>Game starts off with 15 guesses</li>
+                        <li>Get the word right to gain back 2 guesses!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
   <script src="assets/javascript/game.js"></script>
 

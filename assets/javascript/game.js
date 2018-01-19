@@ -71,7 +71,7 @@ var states = ["Alaska",
 
 	    // Next, we give JavaScript a function to execute when onkeyup event fires.
 	    document.onkeyup = function(event) {
-
+	    	// document.getElementById("game-label").textContent = "Game is on!";
 	    	var keyPressed = event.key;
 
 		    if (guessesRemaining === 0) {
