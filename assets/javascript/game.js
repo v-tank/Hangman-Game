@@ -85,6 +85,10 @@ var states = ["Alaska",
 
 						guessesRemaining--;
 
+					  spanText = document.getElementById("guesses-remaining-label");
+
+						changeColor(guessesRemaining);
+
 						renderScreen();
 					}
 					else if (word.indexOf(keyPressed) >= 0) {
@@ -105,8 +109,10 @@ var states = ["Alaska",
     	}
 
     	if (dashLetters.indexOf("_") < 0) {
-    		console.log("You got all the letters!");
+    		//console.log("You got all the letters!");
+    		
     		wins++;
+
     		document.getElementById("wins-label").textContent = wins;
     		resetGame();
     	}
@@ -125,6 +131,21 @@ var states = ["Alaska",
     	main();
     	//printBlanks();
     }
+
+    function changeColor(val) {
+	    var color = "white";
+	    //console.log("Call it");
+
+	    if (val > 4 && val < 9) {
+	        color = "yellow";
+	        //console.log("Yellow");
+	    } else if ((val <= 4) || (guessesRemaining ==0)) {
+	        color = "red";
+	        //console.log("Red");
+	    } 
+	    
+	    spanText.style.color = color;
+		}
 
     function printLetters(keyPressed) {
     	
