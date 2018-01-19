@@ -56,67 +56,85 @@ var states = ["Alaska",
 
     var word;
     var wins = 0;
-    var guessesRemaining = 10;
+    var guessesRemaining = 15;
     var guessedLetters = [];
     var dashLetters = [];
 
+    main();
+
+    function main() {
     // randomly pick a state from the array and turns it into lowercase
-		word = states[Math.floor(Math.random() * states.length)].toLowerCase();
+			generateRandomWord();
 
-		// call function print blanks equivalent to length of the state name
-		printBlanks(word.length);
+			// call function print blanks equivalent to length of the state name
+			printBlanks(word.length);
 
-    //console.log("Hello from the other side......of the event");
+	    // Next, we give JavaScript a function to execute when onkeyup event fires.
+	    document.onkeyup = function(event) {
 
+	    	var keyPressed = event.key;
 
-    // Next, we give JavaScript a function to execute when onkeyup event fires.
-    document.onkeyup = function(event) {
+		    if (guessesRemaining === 0) {
+		    	return;
+		    } 
 
-    	var keyPressed = event.key;
-    	console.log("Here's what I pressed: " + keyPressed);
-	    document.getElementById("game-label").textContent = "Game has begun!"
-	    //////////////////////////////////////////////////////////////////////////
+		    // Checks and only takes valid a-z values
+				if (event.keyCode >= 65 && event.keyCode <= 90){
+					if ((guessedLetters.indexOf(keyPressed) < 0) && (word.indexOf(keyPressed) < 0)) {
+						guessedLetters.push(keyPressed);
 
-	    // Checks and only takes valid a-z values
-			if (event.keyCode >= 65 && event.keyCode <= 90){
-				if ((guessedLetters.indexOf(keyPressed) < 0) && (word.indexOf(keyPressed) < 0)) {
-					guessedLetters.push(keyPressed);
-					console.log("Letter is NOT in the word");
-					guessesRemaining--;
+						guessesRemaining--;
 
-					document.getElementById("guesses-remaining-label").textContent = guessesRemaining;
-					document.getElementById("letters-guessed-label").textContent = guessedLetters;
+						renderScreen();
+					}
+					else if (word.indexOf(keyPressed) >= 0) {
+						printLetters(keyPressed);
+					}
 				}
-				else if (word.indexOf(keyPressed) >= 0) {
-					var keyIndex = word.indexOf(keyPressed);
+	    }
+  	}
 
-					console.log("Word is " + word);
-					console.log("Letter is in the word!");
-					console.log("Word length is: " + word.length);
-					console.log("Length of dashLetters is: " + dashLetters.length);
-					console.log("Index of the pressed key in the word is: " + keyIndex);
-					printLetters(keyPressed);
+    function renderScreen(){
+    	document.getElementById("guesses-remaining-label").textContent = guessesRemaining;
+			document.getElementById("letters-guessed-label").textContent = guessedLetters.join(" ");
+    	document.getElementById("word-space").textContent = dashLetters.join(" ");
 
-				}
-			}
+    	if (guessesRemaining == 0) {
+    		document.getElementById("game-label").textContent = "Game over!"
+    		return;
+    	}
+
+    	if (dashLetters.indexOf("_") < 0) {
+    		console.log("You got all the letters!");
+    		wins++;
+    		document.getElementById("wins-label").textContent = wins;
+    		resetGame();
+    	}
+    }
+
+    function generateRandomWord() {
+    	word = states[Math.floor(Math.random() * states.length)].toLowerCase();
+    	return word;
     }
 
     function resetGame(){
-    	wins = 0;
-    	guessesRemaining = [];
+    	guessesRemaining += 2;
     	guessedLetters = [];
     	dashLetters = [];
+
+    	main();
+    	//printBlanks();
     }
 
     function printLetters(keyPressed) {
     	
     	for (var i=0; i < word.length; i++) {
-    		 if (word[i] === keyPressed) { 
+ 				if (word[i] === keyPressed) { 
     			dashLetters[i] = keyPressed.toUpperCase();
     		}
     	}
-    	console.log(dashLetters);
-    	document.getElementById("word-space").textContent = dashLetters.join(" ");
+
+    	renderScreen();
     }
 
     function printBlanks(length){
@@ -128,5 +146,6 @@ var states = ["Alaska",
     			dashLetters.push("_"); //appends blanks to display on screen
     		}
     	}
-    	document.getElementById("word-space").textContent = dashLetters.join(" "); // displays blanks on HTML
+
+    	renderScreen();
     }
