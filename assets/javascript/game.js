@@ -74,6 +74,7 @@ var states = ["Alaska",
 	    	// document.getElementById("game-label").textContent = "Game is on!";
 	    	var keyPressed = event.key;
 
+	    	// if all out of guesses, return out of the program
 		    if (guessesRemaining === 0) {
 		    	return;
 		    } 
@@ -98,6 +99,7 @@ var states = ["Alaska",
 	    }
   	}
 
+  	// updates variables on the screen
     function renderScreen(){
     	document.getElementById("guesses-remaining-label").textContent = guessesRemaining;
 			document.getElementById("letters-guessed-label").textContent = guessedLetters.join(" ");
@@ -105,6 +107,7 @@ var states = ["Alaska",
 
     	if (guessesRemaining == 0) {
     		document.getElementById("game-label").textContent = "Game over!"
+    		alert("Game over! Refresh page to start over.");
     		return;
     	}
 
@@ -118,11 +121,13 @@ var states = ["Alaska",
     	}
     }
 
+    // picks a random word from the states array
     function generateRandomWord() {
     	word = states[Math.floor(Math.random() * states.length)].toLowerCase();
     	return word;
     }
 
+    // resets the game and gives back 2 lives if user wins
     function resetGame(){
     	guessesRemaining += 2;
     	guessedLetters = [];
@@ -132,6 +137,7 @@ var states = ["Alaska",
     	//printBlanks();
     }
 
+    // change color of remaining guesses to alert user when game is almost over
     function changeColor(val) {
 	    var color = "white";
 	    //console.log("Call it");
@@ -147,6 +153,7 @@ var states = ["Alaska",
 	    spanText.style.color = color;
 		}
 
+		// print the letters to the screen if key pressed is in the random word
     function printLetters(keyPressed) {
     	
     	for (var i=0; i < word.length; i++) {
@@ -158,6 +165,7 @@ var states = ["Alaska",
     	renderScreen();
     }
 
+    // print number of blanks depending on number of chars in the random word
     function printBlanks(length){
     	for(var i = 0; i < length; i++) {
     		if (word[i] == ' '){

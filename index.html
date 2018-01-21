@@ -12,81 +12,70 @@
 		
   </head>
 <body>
-	<div class="container-fluid custom">
+	<div class="container-fluid" style="height: 100%;">
         <div class="row">
             <div class="jumbotron jumbotron-fluid customJumbotron">
               <div class="container-fluid">
-                <center><h1 class="display-4">Hangman</h1></center>
+                <h1 class="display-4 text-center">Hangman</h1>
               </div>
             </div>
         </div>
 
-        <div class="row">
-            <!-- Column 1 -->
-            <div class="col-lg-3 noPaddingDiv">
-                
-            </div>
-                
-            <!-- Column 2 -->
-            <div class="col-lg-6 paddedDiv">
-                <div class="row">
+        <div class="row h-75">
+            
+                <!-- Column 1 -->
+                <div class="col row align-items-center left">
                     <h2 id="game-label" class="text-center">Press any key to get started!</h2>
                 </div>
                 
-                <div class="row">
-                    <br><br>
-                </div>
+                <!-- Column 2 -->
+                <div class="col-lg-6">
+                    
+                    <div class="row row align-items-end customHeight mb-5">
+                        <h2 id="word-space" class="text-center">_ _ _ _ _ _ _ _ </h2>
+                    </div>
 
-                <div class="row">
-                    <div class="col-6">
-                        <div class="row customHeight">
-                            <h3>Wins: </h3>
+                    <div class="row">
+                        <div class="col-lg-6 mb-3">
+                            <h3 class="text-center">Guesses Remaining</h3>
                         </div>
-                        
-                        <div class="row customHeight">
-                            <h3>Current Word: </h3>
-                        </div>
-
-                        <div class="row customHeight">
-                            <h3>Number of Guesses Remaining: </h3>
-                        </div>
-
-                        <div class="row customHeight">
-                            <h3>Letters Already Guessed: </h3>
+                        <div class="col-lg-6 ">
+                            <h3 class="text-center">Wins</h3>
                         </div>
                     </div>
 
-                    <div class="col-6">
-                        <div class="row customHeight">
-                            <h2 id="wins-label">0</h2>
-                        </div>
-                        
-                        <div class="row customHeight">
-                            <h2 id="word-space">_ _ _ _ _ _ _ _ </h2>
-                        </div>
-
-                        <div class="row customHeight">
+                    <div class="row mb-3">
+                        <div class="col-lg-6 text-center">
                             <h2 id="guesses-remaining-label">15</h2>
                         </div>
+                        <div class="col-lg-6 text-center">
+                            <h2 id="wins-label">0</h2>
+                        </div>
+                    </div>
 
-                        <div class="row customHeight">
+                    <div class="row customHeight">
+                        <div class="col-lg-12 text-center">
+                            <h3>Letters Already Guessed</h3>
+                        </div>
+                        <div class="col-lg-12 text-center customHeight">
                             <h2 id="letters-guessed-label">None</h2>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Column 3 -->
-            <div class="col-lg-3 customContainer right paddedDiv">
-                <div class="vertAlign">
-                    <h3>Hints:</h3>
-                    <ul>
-                        <li>Words are US State Capitals</li>
-                        <li>Game starts off with 15 guesses</li>
-                        <li>Get the word right to gain back 2 guesses!</li>
-                    </ul>
+                
+                <!-- Column 3 -->
+                <div class="col row align-items-center right">
+                    <div>
+                        <h3>Hints:</h3>
+                        <ul>
+                            <li>Words are US State Capitals</li>
+                            <li>Game starts off with 15 guesses</li>
+                            <li>Get the word right to gain back 2 guesses!</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            
         </div>
     </div>
 
